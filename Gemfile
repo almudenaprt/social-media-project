@@ -21,6 +21,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
+
+gem 'coffee-script-source', '1.8.0'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -48,3 +51,25 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+
+# Gem that translates the system messages
+gem 'rails-i18n'
+
+# Devise
+gem 'devise'
+gem 'devise-i18n'
+
+# Carrierwave
+gem 'carrierwave'
+gem 'carrierwave-i18n'
+
+# Bootstrap
+gem 'bootstrap', '~> 4.0.0'
+
+# Jquery for Rails
+gem 'jquery-rails'
+
+# Font Awesome
+gem 'font-awesome-rails'
