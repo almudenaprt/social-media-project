@@ -61,7 +61,7 @@ gem 'rails-i18n'
 gem 'devise'
 gem 'devise-i18n'
 
-# Carrierwave
+# Carrierwave for avatar
 gem 'carrierwave'
 gem 'carrierwave-i18n'
 

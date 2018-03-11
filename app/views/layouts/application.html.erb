@@ -10,6 +10,57 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <!-- El logotipo y el menú desplegable se agrupan para una mejor organización en dispositivos móviles -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar text-white"><%= fa_icon "twitter" %></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <b><%= link_to "Twitter", root_path, class: "navbar-brand" %></b>
+        </div>
+        <!-- Agrupa los enlaces de navegación, formularios y otro contenido desplegable -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="text-white"><%= link_to "Compose New Tweet", new_tweet_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class="dropdown ::after">
+                
+                  <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <% if current_user.avatar.blank? == false %>
+                      <%= image_tag current_user.avatar.url, size:25, class: "user-pic-nav" %>
+                    <% end %> 
+                    @<%= current_user.username %></span></a>
+                
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="fixed-bottom">
+      <%= link_to "https://www.android.com" do %>
+        <h3 class= "text-success">
+        <%= fa_icon "android" %>
+        Android
+        </h3>
+      <% end %>
+    </div>
+    
+    <div class= "container">
+      <%= yield %>
+    </div>
+    
   </body>
 </html>

@@ -24,6 +24,28 @@
   </tbody>
 </table>
 
+<% @tweets.each do |tweet| %>
+  <div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title"><%= tweet.user.name %> @<%= tweet.user.username %></h5>
+      <p class="card-text"><%= tweet.message %></p>
+      <a href="#" class="btn"><%= fa_icon "random" %> Retwittear</a>
+      <a href="#" class="btn"><%= fa_icon "reply" %> Responder</a>
+      <a href="#" class="btn text-danger"><%= fa_icon "heart" %> Marcar como favorito</a>
+    </div>
+  </div>
+
+  <div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title"><%= tweet.user.name %> @<%= tweet.user.username %></h5>
+      <p class="card-text"><%= tweet.message %></p>
+      <a><%= link_to 'Show', tweet %><a>
+      <a><%= link_to 'Edit', edit_tweet_path(tweet) %></a>
+      <a><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+    </div>
+  </div>
+<% end %>
+
 <br>
 
 <%= link_to 'New Tweet', new_tweet_path %>
