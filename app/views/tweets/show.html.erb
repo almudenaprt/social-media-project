@@ -1,14 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Message:</strong>
-  <%= @tweet.message %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @tweet.user %>
-</p>
-
-<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
+<div class= "row">
+    <div class="col-sm-3 col-md-6 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @tweet.user.name %><span class="text-muted"> <%= "@#{@tweet.user.username}" %></span><span class="btn-group float-right">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Más acciones
+          </button>
+          <span class="dropdown-menu">
+          <button class="dropdown-item" type="button"><%= link_to 'Edit', edit_tweet_path(@tweet) %></button>
+          <button class="dropdown-item" type="button"><%= link_to 'Destroy', @tweet, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+          </span>
+          </span></h5>
+          <p class="card-text"><%= @tweet.message %></p>
+          <a href="#" class="btn"><%= fa_icon "random" %> Retwittear</a>
+          <a href="#" class="btn"><%= fa_icon "reply" %> Responder</a>
+          <a href="#" class="btn text-danger"><%= fa_icon "heart" %> Marcar como favorito</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+<!-- <%= link_to 'Edit', edit_tweet_path(@tweet) %> | -->
 <%= link_to 'Back', tweets_path %>

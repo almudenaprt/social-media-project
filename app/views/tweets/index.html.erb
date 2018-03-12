@@ -2,46 +2,28 @@
 
 <h1>Tweets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Message</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.message %></td>
-        <td><%= tweet.user %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <% @tweets.each do |tweet| %>
-  <div class="card w-50">
-    <div class="card-body">
-      <h5 class="card-title"><%= tweet.user.name %> @<%= tweet.user.username %></h5>
-      <p class="card-text"><%= tweet.message %></p>
-      <a href="#" class="btn"><%= fa_icon "random" %> Retwittear</a>
-      <a href="#" class="btn"><%= fa_icon "reply" %> Responder</a>
-      <a href="#" class="btn text-danger"><%= fa_icon "heart" %> Marcar como favorito</a>
-    </div>
-  </div>
-
-  <div class="card w-50">
-    <div class="card-body">
-      <h5 class="card-title"><%= tweet.user.name %> @<%= tweet.user.username %></h5>
-      <p class="card-text"><%= tweet.message %></p>
-      <a><%= link_to 'Show', tweet %><a>
-      <a><%= link_to 'Edit', edit_tweet_path(tweet) %></a>
-      <a><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+  <div class= "row">
+    <div class="col-sm-4 col-md-6 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= tweet.user.name %><span class="text-muted"> @<%= tweet.user.username %></span><span class="btn-group float-right">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Más acciones
+          </button>
+          <span class="dropdown-menu">
+          <button class="dropdown-item" type="button"><a><%= link_to 'Show', tweet %><a></button>
+          <button class="dropdown-item" type="button"><%= link_to 'Edit', edit_tweet_path(tweet) %></button>
+          <button class="dropdown-item" type="button"><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+          </span>
+          </span></h5>
+          <p class="card-text"><%= tweet.message %></p>
+          <a href="#" class="btn"><%= fa_icon "random" %> Retwittear</a>
+          <a href="#" class="btn"><%= fa_icon "reply" %> Responder</a>
+          <a href="#" class="btn text-danger"><%= fa_icon "heart" %> Marcar como favorito</a>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
