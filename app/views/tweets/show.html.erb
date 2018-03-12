@@ -4,7 +4,7 @@
     <div class="col-sm-3 col-md-6 col-lg-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= @tweet.user.name %><span class="text-muted"> <%= "@#{@tweet.user.username}" %></span><span class="btn-group float-right">
+          <h5 class="card-title"><%= @tweet.user.name %><span class="text-muted"> <%= link_to "@#{@tweet.user.username}", show_user_path(id: @tweet.user.id) %></span><span class="btn-group float-right">
           <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Más acciones
           </button>
