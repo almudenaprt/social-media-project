@@ -1,12 +1,38 @@
-<h1> El feed de Twitter de @<%= current_user.username %></h1>
+<h1 class="display-4"> El feed de Twitter de @<%= current_user.username %></h1>
 <p>Esto es lo que tus amigos están diciendo:</p>
+<br>
 
-
-<div>
+<div class="align-self-center">
     <% @following_tweets.each do |tweet| %>
-        <div>
-            <p><%= link_to "@#{tweet.user.username}", show_user_path(id: tweet.user.id) %></p>
-            <p><%= tweet.message.html_safe %></p>
+        <div class= "row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= image_tag tweet.user.avatar.url, size: 40 if tweet.user.avatar.url %>
+                            <%= tweet.user.name %>
+                            <span class="text-muted"> <%= link_to "@#{tweet.user.username}", show_user_path(id: tweet.user.id) %></span><span class="btn-group float-right">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Más acciones
+                                </button>
+                                    <span class="dropdown-menu">
+                                    <button class="dropdown-item" type="button"><a><%= link_to 'Show', tweet %><a></button>
+                                    <button class="dropdown-item" type="button"><%= link_to 'Edit', edit_tweet_path(tweet) %></button>
+                                    <button class="dropdown-item" type="button"><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                                </span>
+                            </span>
+                        </h5>
+                        <p class="card-text"><%= tweet.message.html_safe %></p>
+                        <a href="#" class="btn"><%= fa_icon "random" %> Retwittear</a>
+                        <a href="#" class="btn"><%= fa_icon "reply" %> Responder</a>
+                        <a href="#" class="btn text-danger"><%= fa_icon "heart" %> Marcar como favorito</a>
+                    </div>
+                </div>
+            </div>
         </div>
     <% end %>
 </div>
+
+<br>
+
+<%= link_to 'New Tweet', new_tweet_path %>

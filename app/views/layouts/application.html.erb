@@ -39,7 +39,7 @@
                     @<%= current_user.username %></span></a>
                 
                 <ul class="dropdown-menu bg-primary">
-                  <li class="dropdown-item"><%= link_to "Edit Profile", edit_user_registration_path, class: "text-white", hover: "none" %></li>
+                  <li class="dropdown-item"><%= link_to "Edit Profile", edit_user_registration_path, class: "text-white" %></li>
                   <li class="dropdown-item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-white" %></li>
                 </ul>
               </li>

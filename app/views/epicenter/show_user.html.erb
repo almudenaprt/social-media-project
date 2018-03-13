@@ -1,40 +1,50 @@
-<h1>El perfil y los tweets de @<%= @user.username %></h1>
+<h1 class="display-4">El perfil y los tweets de @<%= @user.username %></h1>
+<br>
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%= @user.name %><%= link_to "@#{tweet.user.username}", show_user_path(id: tweet.user.id) %></h5>
-    <p class="card-text"><%= @user.location %></p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-    <p>
-    <% if current_user.following.include?(@user.id) %>
-        <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
-    <% else %>
-        <% if current_user.id != @user.id %>
-	        <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
-	    <% end %>
-    <% end %>
-</p>
-  </div>
+<div class="card w-50">
+    <div class="card-body">
+        <h5 class="card-title"><%= @user.name %><span class="text-muted"> <%= "@#{@user.username}" %></span></h5>
+        <p class="card-text text-muted"><%= fa_icon "map-marker" %> <%= @user.location %></p>
+        <p class="card-text"><%= @user.bio %></p>
+        <p>
+            <% if current_user.following.include?(@user.id) %>
+                <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
+            <% else %>
+                <% if current_user.id != @user.id %>
+                    <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
+                <% end %>
+            <% end %>
+        </p>
+    </div>
 </div>
 
-<p><%= @user.name %></p>
-<p><%= @user.location %></p>
-<p><%= @user.bio %></p>
-
-<p>
-    <% if current_user.following.include?(@user.id) %>
-        <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
-    <% else %>
-        <% if current_user.id != @user.id %>
-	        <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
-	    <% end %>
-    <% end %>
-</p>
-
+<br>
 <% @user.tweets.each do |tweet| %>
-    <div>
-        <p>@<%= @user.username %></p>
-	    <p><%= tweet.message %></p>
-    </div>
+    <div class= "row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= image_tag tweet.user.avatar.url, size: 40 if tweet.user.avatar.url %>
+                            <%= tweet.user.name %>
+                            <span class="text-muted"> <%= link_to "@#{tweet.user.username}", show_user_path(id: tweet.user.id) %></span><span class="btn-group float-right">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Más acciones
+                                </button>
+                                    <span class="dropdown-menu">
+                                    <button class="dropdown-item" type="button"><a><%= link_to 'Show', tweet %><a></button>
+                                    <button class="dropdown-item" type="button"><%= link_to 'Edit', edit_tweet_path(tweet) %></button>
+                                    <button class="dropdown-item" type="button"><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                                </span>
+                            </span>
+                        </h5>
+                        <p class="card-text"><%= tweet.message.html_safe %></p>
+                        <a href="#" class="btn"><%= fa_icon "random" %> Retwittear</a>
+                        <a href="#" class="btn"><%= fa_icon "reply" %> Responder</a>
+                        <a href="#" class="btn text-danger"><%= fa_icon "heart" %> Marcar como favorito</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 <% end %>
+

@@ -3,6 +3,8 @@ class TweetsController < ApplicationController
 
   before_action :authenticate_user!
 
+  include TweetsHelper
+
   # GET /tweets
   # GET /tweets.json
   def index
@@ -26,11 +28,12 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
-
+    @tweet = Tweet.create(tweet_params)
+    @tweet = get_tagged(@tweet)
+    
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to rooth_path, notice: 'Tuit creado correctamente.' }
+        format.html { redirect_to root_path, notice: 'Tuit creado correctamente.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }

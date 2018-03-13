@@ -1,0 +1,24 @@
+<div>
+    <h1 class="display-4"><%= @tag.phrase %></h1>
+</div>
+<br>
+<div class="row">
+  <!-- un lugar para las estadísticas del usuario -->
+  <div>
+    <% @tag.tweets.order(created_at: :desc).each do |tweet| %>
+        <div class="card">
+            <div class="card-header">
+                
+                <%= tweet.user.name %> <%= "@#{tweet.user.username}" %>
+                • <small class="text-muted">Escrito hace <%= time_ago_in_words(tweet.created_at) %></small>
+                
+            </div>
+            <div class="card-body">
+                <p>
+                    <%= tweet.message.html_safe %>
+                </p>
+            </div>
+        </div>
+    <% end %>
+    </div>
+</div>

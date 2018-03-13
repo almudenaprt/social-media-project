@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312130250) do
+ActiveRecord::Schema.define(version: 20180313101425) do
 
   create_table "tags", force: :cascade do |t|
     t.string "phrase"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20180312130250) do
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tweet_tags_on_tag_id"
+    t.index ["tweet_id"], name: "index_tweet_tags_on_tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|
