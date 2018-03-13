@@ -1,11 +1,15 @@
 <h1 class="display-4">El perfil y los tweets de @<%= @user.username %></h1>
 <br>
 
-<div class="card w-50">
+<div class="card w-50 text-center">
     <div class="card-body">
+        <%= image_tag @user.avatar.url, class: "card-img-top" %>
         <h5 class="card-title"><%= @user.name %><span class="text-muted"> <%= "@#{@user.username}" %></span></h5>
         <p class="card-text text-muted"><%= fa_icon "map-marker" %> <%= @user.location %></p>
         <p class="card-text"><%= @user.bio %></p>
+        <small class="text-muted"><%= @user.tweets.count %> TWEETS</small>
+        <small class="text-muted"><%= @user.following.count %> <%= link_to "FOLLOWING", following_path(id: @user.id) %></small>
+        <small class="text-muted"><%= @user.following.count %> FOLLOWERS</small>
         <p>
             <% if current_user.following.include?(@user.id) %>
                 <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
