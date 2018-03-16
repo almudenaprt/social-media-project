@@ -12,4 +12,17 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   serialize :following, Array
+
+  def count_followers
+    
+    followers = 0
+
+    User.all.each do |user|
+      if user.following.include?(self.id)
+        followers += 1
+      end
+    end
+    return followers
+  end
+
 end

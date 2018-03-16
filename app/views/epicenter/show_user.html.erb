@@ -9,7 +9,7 @@
         <p class="card-text"><%= @user.bio %></p>
         <small class="text-muted"><%= @user.tweets.count %> TWEETS</small>
         <small class="text-muted"><%= @user.following.count %> <%= link_to "FOLLOWING", following_path(id: @user.id) %></small>
-        <small class="text-muted"><%= @user.following.count %> FOLLOWERS</small>
+        <small class="text-muted"><%= @user.count_followers %> <%= link_to "FOLLOWERS", followers_path(id: @user.id) %></small>
         <p>
             <% if current_user.following.include?(@user.id) %>
                 <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>

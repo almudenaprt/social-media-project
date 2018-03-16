@@ -1,23 +1,4 @@
 <h1 class="display-4 text-center">Estos son todos nuestros usuarios de Twitter</h1>
 <br>
 
-<div class="row" >
-    <% @users.each do |user| %>
-        <div class="card m-2 pb-0 text-center col-md-4">
-            <div class="card-body">
-                <h5 class="card-title"><%= user.name %><span class="text-muted"> <%= link_to "@#{user.username}", show_user_path(id: user.id) %></span></h5>
-                <p class="card-text text-muted"><%= fa_icon "map-marker" %> <%= user.location %></p>
-                <p class="card-text"><%= user.bio %></p>
-                <p>
-                    <% if current_user.following.include?(user.id) %>
-                        <%= link_to "Unfollow", unfollow_path(id: user.id), class: "btn btn-danger" %>
-                    <% else %>
-                        <% if current_user.id != user.id %>
-                            <%= link_to "Follow", now_following_path(id: user.id), class: "btn btn-primary" %>
-                        <% end %>
-                    <% end %>
-                </p>
-            </div>
-        </div>
-    <% end %>
-</div>
+<%= render 'user_list' %>
